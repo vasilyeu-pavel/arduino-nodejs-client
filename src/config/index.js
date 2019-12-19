@@ -9,4 +9,4 @@ export default {
         host: 'powerful-falls-48878.herokuapp.com',
         socketUrl: 'wss://powerful-falls-48878.herokuapp.com'
     }
-}['production'];
+}[process.env.NODE_ENV];
