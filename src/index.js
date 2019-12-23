@@ -4,17 +4,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SignIn from './components/Auth/SignIn';
 
 const RenderAuthRoutes = () => {
     return (
         <Router>
             <Switch>
-                <Route
-                    path='/login'
-                    exact
-                    component={props => <SignIn {...props} />}
-                />
                 <Route
                     path="*"
                     exact
