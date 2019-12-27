@@ -5,77 +5,77 @@ const buttons = [
     {
         url: 'Ascend/ascend@3x.png',
         name: 'ascend',
-        value: 0,
+        value: 5,
     },
     {
         url: 'Bend/bendright@3x.png',
         name: 'bendright',
-        value: 0,
+        value: 6,
     },
     {
         url: 'Cross/crossright@3x.png',
         name: 'crossright',
-        value: 0,
+        value: 7,
     },
     {
         url: 'Flap/flapfront@3x.png',
         name: 'flapfront',
-        value: 0,
+        value: 8,
     },
     {
         url: 'Updown/updown@3x.png',
         name: 'updown',
-        value: 0,
+        value: 9,
     },
     {
         url: 'Ultrasound/ultrasound@3x.png',
         name: 'ultrasound',
-        value: 0,
+        value: 10,
     },
     {
         url: 'Tiptoe/tiptoe@3x.png',
         name: 'tiptoe',
-        value: 0,
+        value: 11,
     },
     {
         url: 'Swing/swing@3x.png',
         name: 'swing',
-        value: 0,
+        value: 12,
     },
     {
         url: 'Jitter/jitter@3x.png',
         name: 'jitter',
-        value: 0,
+        value: 13,
     },
     {
         url: 'Moonwalk/moonwalkleft@3x.png',
         name: 'moonwalkleft',
-        value: 0,
+        value: 14,
     },
     {
         url: 'Moonwalk/moonwalkright@3x.png',
         name: 'moonwalkright',
-        value: 0,
+        value: 15,
     },
     {
         url: 'Moves/moves@3x.png',
         name: 'moves',
-        value: 0,
+        value: 16,
     },
     {
         url: 'Shake/shakeleft@3x.png',
         name: 'shakeleft',
-        value: 0,
+        value: 17,
     },
     {
         url: 'Shake/shakeright@3x.png',
         name: 'shakeright',
-        value: 0,
+        value: 18,
     },
     {
         url: 'Help/help@3x.png',
         name: 'help',
-        value: 0,
+        value: 19,
     },
 ];
 
@@ -100,7 +100,7 @@ const Menu = () => {
                 {buttons.map(({ url, cb = onClick, name, value }, i) => (
                     <div
                         key={i}
-                        onClick={() => cb(name)}
+                        onClick={() => cb(value)}
                         className="d-flex col-2 m-1 p-1"
                         style={{
                             border: '2px solid',

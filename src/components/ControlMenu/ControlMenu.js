@@ -3,7 +3,7 @@ import { SocketContext } from '../../context';
 
 const ControlMenu = () => {
     const { socket } = useContext(SocketContext);
-    const [isToggle, setToggle] = useState(null);
+    const [isToggle, setToggle] = useState(0);
 
     let interval;
 
@@ -13,7 +13,7 @@ const ControlMenu = () => {
         window.addEventListener( 'contextmenu', clearContextMenu);
 
         if (isToggle) {
-            interval = setInterval(() => socket.send(isToggle), 100);
+            interval = setInterval(() => socket.send(isToggle), 1000);
         }
         return () => {
             clearInterval(interval);
@@ -23,23 +23,23 @@ const ControlMenu = () => {
 
     const onMouseDown = (e, message) => {
         e.preventDefault();
-
+        socket.send(0);
         setToggle(message);
     };
 
     const onMouseUp = (e) => {
         e.preventDefault();
         setToggle(null);
-
+        socket.send(0);
         clearInterval(interval);
     };
 
-    const renderControlButton = (name) => (
+    const renderControlButton = (name, value) => (
         <div
             className="d-flex col-4"
-            onTouchStart={(e) => onMouseDown(e, name)}
+            onTouchStart={(e) => onMouseDown(e, value)}
             onTouchEnd={(e) => onMouseUp(e)}
-            onMouseDown={(e) => onMouseDown(e, name)}
+            onMouseDown={(e) => onMouseDown(e, value)}
             onMouseUp={(e) => onMouseUp(e)}
         >
             <img
@@ -58,15 +58,15 @@ const ControlMenu = () => {
             </div>
             <div className="row m-1 w-100 justify-content-center" style={{ touchAction: 'none' }}>
                 <div className="row justify-content-center w-100">
-                    {renderControlButton('forward')}
+                    {renderControlButton('forward', 1)}
                 </div>
                 <div className="row justify-content-center w-100">
-                    {renderControlButton('left')}
+                    {renderControlButton('left', 3)}
                     <div className="d-flex col-2 m-0 p-0 align-items-center justify-content-center" />
-                    {renderControlButton('right')}
+                    {renderControlButton('right', 4)}
                 </div>
                 <div className="row justify-content-center w-100">
-                    {renderControlButton('backward')}
+                    {renderControlButton('backward', 2)}
                 </div>
             </div>
         </>
