@@ -30,7 +30,7 @@ const ControlMenu = () => {
     const onMouseUp = (e) => {
         e.preventDefault();
         setToggle(null);
-        socket.send('00');
+        socket.send(0);
         clearInterval(interval);
     };
 
@@ -58,15 +58,15 @@ const ControlMenu = () => {
             </div>
             <div className="row m-1 w-100 justify-content-center" style={{ touchAction: 'none' }}>
                 <div className="row justify-content-center w-100">
-                    {renderControlButton('forward', '01')}
+                    {renderControlButton('forward', 1)}
                 </div>
                 <div className="row justify-content-center w-100">
-                    {renderControlButton('left', '03')}
+                    {renderControlButton('left', 3)}
                     <div className="d-flex col-2 m-0 p-0 align-items-center justify-content-center" />
-                    {renderControlButton('right', '04')}
+                    {renderControlButton('right', 4)}
                 </div>
                 <div className="row justify-content-center w-100">
-                    {renderControlButton('backward', '02')}
+                    {renderControlButton('backward', 2)}
                 </div>
             </div>
         </>
