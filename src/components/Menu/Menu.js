@@ -4,7 +4,10 @@ import { buttons, audioButtons, otherButtons } from './data';
 
 const Menu = () => {
     const { socket } = useContext(SocketContext);
-    const onClick = (name) => socket.send(name);
+    const onClick = (name) => {
+        window.navigator.vibrate(1000);
+        socket.send(name);
+    };
 
     return (
         <>
