@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { SocketContext } from '../../context';
-import { buttons, audioButtons } from './data';
+import { buttons, audioButtons, otherButtons } from './data';
 
 const Menu = () => {
     const { socket } = useContext(SocketContext);
@@ -26,6 +26,31 @@ const Menu = () => {
                         onClick={() => cb(value)}
                         className="d-flex col-2 m-1 p-1"
                         style={{ border: '2px solid', borderRadius: '15%' }}
+                    >
+                        <img
+                            className="w-100"
+                            alt={url}
+                            src={require(`../../img/Buttons/${url}`)}
+                        />
+                    </div>
+                ))
+                }
+            </div>
+            <div className="row m-1 w-100">
+                <div className="col">
+                    Other
+                </div>
+            </div>
+            <div className="row justify-content-center m-1 py-3 w-100" style={{ border: '2px solid', borderRadius: '5px' }}>
+                {otherButtons.map(({ url, cb = onClick, name, value }, i) => (
+                    <div
+                        key={i}
+                        onClick={() => cb(value)}
+                        className="d-flex col-2 m-1 p-1"
+                        style={{
+                            border: '2px solid',
+                            borderRadius: '15%',
+                        }}
                     >
                         <img
                             className="w-100"

@@ -103,3 +103,31 @@ export const audioButtons = [
         value: 41, // +
     },
 ];
+
+export const otherButtons = [
+    {
+        url: 'hello.png',
+        name: 'hello',
+        value: 25, // +
+    },
+    {
+        url: 'crazy.png',
+        name: 'crazy',
+        value: 24, // +
+    },
+    {
+        url: 'michael-jackson.png',
+        name: 'michael-jackson',
+        value: 26, // +
+    },
+    {
+        url: 'dices.png',
+        name: 'dices',
+        value: 22, // +
+    },
+    {
+        url: 'shuffle.png',
+        name: 'shuffle',
+        value: 23, // +
+    },
+];
