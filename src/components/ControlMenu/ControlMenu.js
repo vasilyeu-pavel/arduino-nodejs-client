@@ -14,7 +14,6 @@ const ControlMenu = () => {
 
         if (isToggle) {
             interval = setInterval(() => socket.send(isToggle), 1000);
-            window.navigator.vibrate(1000);
         }
         return () => {
             clearInterval(interval);
@@ -25,7 +24,6 @@ const ControlMenu = () => {
     const onMouseDown = (e, message) => {
         e.preventDefault();
         socket.send('00');
-        window.navigator.vibrate(0);
         setToggle(message);
     };
 
@@ -33,7 +31,6 @@ const ControlMenu = () => {
         e.preventDefault();
         setToggle(null);
         socket.send('00');
-        window.navigator.vibrate(0);
         clearInterval(interval);
     };
 
