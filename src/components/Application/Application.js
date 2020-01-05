@@ -45,10 +45,19 @@ const Application = () => {
         return () => clearInterval(connectInterval);
     }, []);
 
-    if (!socket) return (
+    if (socket) return (
         <>
-            <div className="p-3 mb-2 text-white">Un connected to server by websocket connection</div>
-            <Preloader />
+            <div className="p-3 mb-2 text-white">
+                <img
+                    style={{ width: '100px' }}
+                    alt="plug"
+                    src={require('../../img/plug.png')}
+                />
+                <span className="m-3">
+                    Сonnect to the server
+                </span>
+                <Preloader />
+            </div>
         </>
     );
 
