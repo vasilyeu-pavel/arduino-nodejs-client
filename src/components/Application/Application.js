@@ -45,7 +45,7 @@ const Application = () => {
         return () => clearInterval(connectInterval);
     }, []);
 
-    if (socket) return (
+    if (!socket) return (
         <>
             <div className="p-3 mb-2 text-white">
                 <img
