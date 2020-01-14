@@ -7,6 +7,8 @@ import Switch from '../Switch/Switch';
 import HeaderNavigation from '../../layouts';
 import Preloader from '../Preloader/Preloader';
 
+import Music from "../Music/Music";
+
 const Application = () => {
     const [socket, setSocket] = useState(undefined);
 
@@ -68,6 +70,7 @@ const Application = () => {
                     <Switch />
                     <ControlMenu />
                     <Menu />
+                    <Music />
                 </>
             </HeaderNavigation>
         </SocketContext.Provider>
