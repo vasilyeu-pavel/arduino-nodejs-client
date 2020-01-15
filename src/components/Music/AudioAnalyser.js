@@ -21,6 +21,8 @@ class AudioAnalyser extends Component {
         this.rafId = requestAnimationFrame(this.tick);
     }
 
+    getFrequence = () => ((this.dataArray[this.dataArray.length - 1]) / 100 * 4).toFixed(0);
+
     tick = async () => {
         this.analyser.getByteTimeDomainData(this.dataArray);
         this.setState({
@@ -29,7 +31,8 @@ class AudioAnalyser extends Component {
 
         await new Promise(res => setTimeout(() => res(), 500));
 
-        console.log(this.dataArray[this.dataArray.length - 1]);
+        console.log(this.getFrequence());
+        console.log(this.props.audio);
 
         this.rafId = requestAnimationFrame(this.tick);
     };
