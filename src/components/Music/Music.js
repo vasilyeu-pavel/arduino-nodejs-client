@@ -31,20 +31,26 @@ class Music extends Component {
         }
     };
 
-    componentWillUnmount() {
+    killMediaStream = () => {
         if (this.state.audio) {
-            this.state.audio.getTracks()
-                .forEach((track) => track.stop());
+            this.state.audio.getTracks().forEach((track) => {
+                track.stop()
+            });
         }
 
         this.setState({
             audio: null,
             mp3: null,
         });
+    };
+
+    componentWillUnmount() {
+        this.killMediaStream();
     }
 
     render() {
         const { mp3, audio } = this.state;
+        const { socket } = this.props;
 
         return (
             <>
@@ -62,17 +68,18 @@ class Music extends Component {
 
                             <div className="controls">
                                 <audio
-                                    onPlay={this.setAudioStream}
-                                    onPause={() => this.setState({ audio: null, mp3: null })}
-                                    ref={(r) => this.ref = r}
                                     controls
-                                    src={mp3}>
+                                    src={mp3}
+                                    ref={(r) => this.ref = r}
+                                    onPlay={this.setAudioStream}
+                                    onPause={() => this.killMediaStream()}
+                                >
                                 </audio>
                             </div>
                             {this.state.audio ? (
                                     <AudioAnalyser
                                         audio={audio}
-                                        socket={this.props.socket}
+                                        socket={socket}
                                     />
                                 ) : ''
                             }

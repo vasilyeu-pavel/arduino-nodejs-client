@@ -4,6 +4,8 @@ import './UploadFile.css';
 const UploadFile = ({ handleUrl }) => {
     const handleFile = e => {
         const file = e.target.files[0];
+        if (!file) return;
+
         const fileURL = window.URL.createObjectURL(file);
 
         handleUrl(fileURL);
