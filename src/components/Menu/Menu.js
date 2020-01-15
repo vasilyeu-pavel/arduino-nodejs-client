@@ -1,9 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { SocketContext } from '../../context';
 import { buttons, audioButtons, otherButtons } from './data';
 
 const Menu = () => {
     const { socket } = useContext(SocketContext);
+    const [isOpen, setOpen] = useState(true);
+    const handleOpen = () => setOpen(!isOpen);
+
     const onClick = (name) => {
         window.navigator.vibrate(100);
         socket.send(name);
@@ -64,13 +67,13 @@ const Menu = () => {
                 ))
                 }
             </div>
-            <div className="row m-1 w-100">
+            <div className="row m-1 w-100" onClick={handleOpen}>
                 <div className="col">
                     Voice
                 </div>
             </div>
             <div className="row justify-content-center m-1 py-3 w-100" style={{ border: '2px solid', borderRadius: '5px' }}>
-                {audioButtons.map(({ url, cb = onClick, name, value }, i) => (
+                {isOpen ? audioButtons.map(({ url, cb = onClick, name, value }, i) => (
                     <div
                         key={i}
                         onClick={() => cb(value)}
@@ -87,7 +90,7 @@ const Menu = () => {
                         />
                     </div>
                 ))
-                }
+                    : <div>...</div>}
             </div>
         </>
     )
