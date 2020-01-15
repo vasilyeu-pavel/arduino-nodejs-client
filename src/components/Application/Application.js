@@ -43,7 +43,6 @@ const Application = () => {
 
     useEffect(() => {
         connect();
-
         return () => clearInterval(connectInterval);
     }, []);
 
@@ -70,7 +69,7 @@ const Application = () => {
                     <Switch />
                     <ControlMenu />
                     <Menu />
-                    <Music />
+                    <Music socket={socket} />
                 </>
             </HeaderNavigation>
         </SocketContext.Provider>

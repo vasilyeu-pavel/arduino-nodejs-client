@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import memoize from '../../helpers/memo';
+
+const memoized = memoize();
 
 class AudioAnalyser extends Component {
     constructor(props) {
@@ -23,16 +26,24 @@ class AudioAnalyser extends Component {
 
     getFrequence = () => ((this.dataArray[this.dataArray.length - 1]) / 100 * 4).toFixed(0);
 
+    sendToServer = (value) => {
+        const socket = this.props;
+        if (!value) return;
+
+        socket.send(`5${value}`);
+    };
+
     tick = async () => {
         this.analyser.getByteTimeDomainData(this.dataArray);
         this.setState({
             audioData: this.dataArray
         });
 
-        await new Promise(res => setTimeout(() => res(), 500));
+        await new Promise(res => setTimeout(() => res(), 300));
 
-        console.log(this.getFrequence());
-        console.log(this.props.audio);
+        const value = this.getFrequence();
+
+        this.sendToServer(memoized(value));
 
         this.rafId = requestAnimationFrame(this.tick);
     };

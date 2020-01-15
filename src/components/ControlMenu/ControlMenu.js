@@ -12,9 +12,9 @@ const ControlMenu = () => {
     useEffect(() => {
         window.addEventListener( 'contextmenu', clearContextMenu);
 
-        if (isToggle) {
-            interval = setInterval(() => socket.send(isToggle), 1000);
-        }
+        // if (isToggle) {
+        //     interval = setInterval(() => socket.send(isToggle), 1000);
+        // }
         return () => {
             clearInterval(interval);
             window.removeEventListener('contextmenu', clearContextMenu);
@@ -34,13 +34,20 @@ const ControlMenu = () => {
         clearInterval(interval);
     };
 
+    const onClick = (e, value) => {
+        e.preventDefault();
+        window.navigator.vibrate(100);
+        socket.send(value)
+    };
+
     const renderControlButton = (name, value) => (
         <div
             className="d-flex col-4"
-            onTouchStart={(e) => onMouseDown(e, value)}
-            onTouchEnd={(e) => onMouseUp(e)}
-            onMouseDown={(e) => onMouseDown(e, value)}
-            onMouseUp={(e) => onMouseUp(e)}
+            // onTouchStart={(e) => onMouseDown(e, value)}
+            // onTouchEnd={(e) => onMouseUp(e)}
+            // onMouseDown={(e) => onMouseDown(e, value)}
+            // onMouseUp={(e) => onMouseUp(e)}
+            onClick={(e) => onClick(e, value)}
         >
             <img
                 className="w-100"
@@ -65,10 +72,11 @@ const ControlMenu = () => {
                     <div className="d-flex col-2 m-0 p-0 align-items-center justify-content-center">
                         <div
                             className="d-flex col-4 w-100 h-100 align-items-center justify-content-center"
-                            onTouchStart={(e) => onMouseDown(e, '00')}
-                            onTouchEnd={(e) => onMouseUp(e)}
-                            onMouseDown={(e) => onMouseDown(e, '00')}
-                            onMouseUp={(e) => onMouseUp(e)}
+                            // onTouchStart={(e) => onMouseDown(e, '00')}
+                            // onTouchEnd={(e) => onMouseUp(e)}
+                            // onMouseDown={(e) => onMouseDown(e, '00')}
+                            // onMouseUp={(e) => onMouseUp(e)}
+                            onClick={(e) => onClick(e, '00')}
                         >
                             <img
                                 className="d-flex"

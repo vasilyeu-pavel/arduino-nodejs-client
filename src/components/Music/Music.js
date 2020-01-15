@@ -63,6 +63,7 @@ class Music extends Component {
                             <div className="controls">
                                 <audio
                                     onPlay={this.setAudioStream}
+                                    onPause={() => this.setState({ audio: null, mp3: null })}
                                     ref={(r) => this.ref = r}
                                     controls
                                     src={mp3}>
@@ -71,6 +72,7 @@ class Music extends Component {
                             {this.state.audio ? (
                                     <AudioAnalyser
                                         audio={audio}
+                                        socket={this.props.socket}
                                     />
                                 ) : ''
                             }
