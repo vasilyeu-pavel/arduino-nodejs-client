@@ -1,23 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Application from './components/Application/Application';
 import * as serviceWorker from './serviceWorker';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.css';
 
-const RenderAuthRoutes = () => {
-    return (
-        <Router>
-            <Switch>
-                <Route
-                    path="*"
-                    exact
-                    component={props => <App {...props} />}
-                />
-            </Switch>
-        </Router>
-    )
-};
+const RenderAuthRoutes = () => <Application />;
 
 ReactDOM.render(<RenderAuthRoutes />, document.getElementById('root'));
 
