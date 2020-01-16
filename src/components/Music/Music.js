@@ -59,36 +59,25 @@ class Music extends Component {
                         Music
                     </div>
                 </div>
-                <div className="row m-1 p-3 w-100" style={{ border: '2px solid', borderRadius: '5px'}}>
-                    {this.state.isOpen ? (
+                {this.state.isOpen ? (
+                    <div className="row m-1 p-3 w-100" style={{ border: '2px solid', borderRadius: '5px'}}>
                         <>
-                            <UploadFile
-                                handleUrl={this.handleUrl}
-                            />
-
+                            <UploadFile handleUrl={this.handleUrl} />
                             <div className="controls">
                                 <audio
+                                    id="music"
+                                    preload="true"
                                     controls
                                     src={mp3}
                                     ref={(r) => this.ref = r}
                                     onPlay={this.setAudioStream}
                                     onPause={() => this.killMediaStream()}
-                                >
-                                </audio>
+                                />
                             </div>
-                            {this.state.audio ? (
-                                    <AudioAnalyser
-                                        audio={audio}
-                                        socket={socket}
-                                    />
-                                ) : ''
-                            }
+                            {this.state.audio ? <AudioAnalyser audio={audio} socket={socket} /> : null}
                         </>
-                        ) : (
-                            <div>...</div>
-                        )
-                    }
-            </div>
+                    </div>
+                ) : null}
         </>
         );
     }
